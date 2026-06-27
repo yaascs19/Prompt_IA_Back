@@ -13,8 +13,9 @@ public class BookDTO {
             String location,
             String type,
             String condition,
-            String description
-    ) {}
+            String description,
+            String imageUrl
+    ) {};
 
     public record BookResponse(
             Long id,
@@ -25,6 +26,7 @@ public class BookDTO {
             String type,
             String condition,
             String description,
+            String imageUrl,
             String ownerName,
             LocalDateTime createdAt
     ) {
@@ -38,6 +40,7 @@ public class BookDTO {
                     book.getType(),
                     book.getCondition(),
                     book.getDescription(),
+                    book.getImageUrl(),
                     book.getOwner().getName(),
                     book.getCreatedAt()
             );

@@ -42,6 +42,7 @@ public class BookService {
         book.setType(request.type());
         book.setCondition(request.condition());
         book.setDescription(request.description());
+        book.setImageUrl(request.imageUrl());
         book.setOwner(owner);
 
         return BookResponse.from(bookRepository.save(book));
