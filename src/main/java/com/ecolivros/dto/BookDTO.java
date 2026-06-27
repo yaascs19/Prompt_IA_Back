@@ -27,6 +27,7 @@ public class BookDTO {
             String condition,
             String description,
             String imageUrl,
+            Long ownerId,
             String ownerName,
             LocalDateTime createdAt
     ) {
@@ -41,6 +42,7 @@ public class BookDTO {
                     book.getCondition(),
                     book.getDescription(),
                     book.getImageUrl(),
+                    book.getOwner().getId(),
                     book.getOwner().getName(),
                     book.getCreatedAt()
             );
