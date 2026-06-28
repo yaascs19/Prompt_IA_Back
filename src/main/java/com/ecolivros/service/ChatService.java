@@ -37,7 +37,13 @@ public class ChatService {
 
     public List<ContactResponse> getContacts(String email) {
         var user = userRepository.findByEmail(email).orElseThrow();
-        return messageRepository.findContacts(user.getId())
-                .stream().map(u -> new ContactResponse(u.getId(), u.getName())).toList();
+        var sent = messageRepository.findWhoIMessaged(user.getId());
+        var received = messageRepository.findWhoSentToMe(user.getId());
+        var all = new java.util.LinkedHashMap<Long, com.ecolivros.entity.User>();
+        received.forEach(u -> all.put(u.getId(), u));
+        sent.forEach(u -> all.put(u.getId(), u));
+        return all.values().stream()
+                .map(u -> new ContactResponse(u.getId(), u.getName()))
+                .toList();
     }
 }
