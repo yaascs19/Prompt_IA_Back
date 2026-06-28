@@ -36,7 +36,7 @@ public class Book {
     @JoinColumn(name = "user_id", nullable = false)
     private User owner;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'ativo'")
     private String status = "ativo";
 
     @Column(nullable = false)
