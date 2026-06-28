@@ -29,5 +29,5 @@ public class MessageDTO {
         }
     }
 
-    public record ContactResponse(Long id, String name) {}
+    public record ContactResponse(Long id, String name, String avatarUrl) {}
 }

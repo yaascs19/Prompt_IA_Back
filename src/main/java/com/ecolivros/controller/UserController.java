@@ -18,7 +18,7 @@ public class UserController {
     public AuthDTO.AuthResponse getById(@PathVariable Long id) {
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
-        return new AuthDTO.AuthResponse(null, user.getId(), user.getName(), user.getEmail());
+        return new AuthDTO.AuthResponse(user.getAvatarUrl(), user.getId(), user.getName(), user.getEmail());
     }
 
     @PutMapping("/me")

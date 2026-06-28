@@ -43,7 +43,7 @@ public class ChatService {
         received.forEach(u -> all.put(u.getId(), u));
         sent.forEach(u -> all.put(u.getId(), u));
         return all.values().stream()
-                .map(u -> new ContactResponse(u.getId(), u.getName()))
+                .map(u -> new ContactResponse(u.getId(), u.getName(), u.getAvatarUrl()))
                 .toList();
     }
 }
