@@ -17,12 +17,16 @@ public class BookService {
     private final UserRepository userRepository;
 
     public List<BookResponse> findAll() {
-        return bookRepository.findAll().stream().map(BookResponse::from).toList();
+        return bookRepository.findAll().stream()
+                .filter(b -> "ativo".equals(b.getStatus()))
+                .map(BookResponse::from).toList();
     }
 
     public List<BookResponse> search(String term) {
         return bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCaseOrCategoryContainingIgnoreCase(
-                term, term, term).stream().map(BookResponse::from).toList();
+                term, term, term).stream()
+                .filter(b -> "ativo".equals(b.getStatus()))
+                .map(BookResponse::from).toList();
     }
 
     public BookResponse findById(Long id) {
@@ -55,6 +59,16 @@ public class BookService {
             throw new SecurityException("Sem permissão");
         }
         bookRepository.delete(book);
+    }
+
+    public BookResponse conclude(Long id, String email) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado"));
+        if (!book.getOwner().getEmail().equals(email)) {
+            throw new SecurityException("Sem permissão");
+        }
+        book.setStatus("concluido");
+        return BookResponse.from(bookRepository.save(book));
     }
 
     public List<BookResponse> findByOwner(String email) {

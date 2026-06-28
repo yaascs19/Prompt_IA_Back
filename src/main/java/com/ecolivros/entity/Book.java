@@ -37,5 +37,8 @@ public class Book {
     private User owner;
 
     @Column(nullable = false)
+    private String status = "ativo";
+
+    @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 }

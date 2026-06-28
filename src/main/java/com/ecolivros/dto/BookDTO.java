@@ -29,6 +29,7 @@ public class BookDTO {
             String imageUrl,
             Long ownerId,
             String ownerName,
+            String status,
             LocalDateTime createdAt
     ) {
         public static BookResponse from(Book book) {
@@ -44,6 +45,7 @@ public class BookDTO {
                     book.getImageUrl(),
                     book.getOwner().getId(),
                     book.getOwner().getName(),
+                    book.getStatus(),
                     book.getCreatedAt()
             );
         }

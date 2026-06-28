@@ -46,4 +46,9 @@ public class BookController {
         bookService.delete(id, user.getUsername());
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/conclude")
+    public BookResponse conclude(@PathVariable Long id, @AuthenticationPrincipal UserDetails user) {
+        return bookService.conclude(id, user.getUsername());
+    }
 }
