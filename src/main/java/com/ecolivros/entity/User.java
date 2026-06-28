@@ -25,4 +25,7 @@ public class User {
 
     private String phone;
     private String city;
+
+    @Column(columnDefinition = "TEXT")
+    private String avatarUrl;
 }

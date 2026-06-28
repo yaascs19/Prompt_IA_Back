@@ -27,6 +27,7 @@ public class ProfileService {
                 user.getEmail(),
                 user.getCity(),
                 user.getPhone(),
+                user.getAvatarUrl(),
                 books.size(),
                 books
         );

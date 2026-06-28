@@ -8,6 +8,7 @@ public record ProfileDTO(
         String email,
         String city,
         String phone,
+        String avatarUrl,
         int totalBooks,
         List<BookDTO.BookResponse> books
 ) {}
